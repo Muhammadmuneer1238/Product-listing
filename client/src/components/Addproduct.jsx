@@ -10,6 +10,8 @@ function AddProduct() {
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
+  const [nestedSubcategories, setNestedSubcategories] = useState([]);
+  const [selectedNestedSubcategory, setSelectedNestedSubcategory] = useState('');
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,6 +30,20 @@ function AddProduct() {
 
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    if (selectedSubcategory) {
+      const selectedCategoryObject = subcategories.find(
+        (subcategory) => subcategory._id === selectedSubcategory
+      );
+
+      setNestedSubcategories(
+        selectedCategoryObject ? selectedCategoryObject.subcategories : []
+      );
+    } else {
+      setNestedSubcategories([]);
+    }
+  }, [selectedSubcategory, subcategories]);
 
   const handleProductNameChange = (e) => {
     setProductName(e.target.value);
@@ -52,17 +68,26 @@ function AddProduct() {
     setSubcategories(
       selectedCategoryObject ? selectedCategoryObject.subcategories : []
     );
+    setSelectedSubcategory('');
+    setNestedSubcategories([]);
+    setSelectedNestedSubcategory('');
   };
 
   const handleSubcategoryChange = (e) => {
     setSelectedSubcategory(e.target.value);
+    setSelectedNestedSubcategory('');
+  };
+
+  const handleNestedSubcategoryChange = (e) => {
+    setSelectedNestedSubcategory(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch(apiUrl +'/addProduct', {
+       
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,16 +98,19 @@ function AddProduct() {
           price: productPrice,
           category: selectedCategory,
           subcategory: selectedSubcategory,
+          nestedSubcategory: selectedNestedSubcategory,
         }),
       });
 
       if (response.ok) {
+        console.log(response);
         alert('Product created successfully');
         setProductName('');
         setProductDescription('');
         setProductPrice('');
         setSelectedCategory('');
         setSelectedSubcategory('');
+        setSelectedNestedSubcategory('');
       } else {
         console.error('Error:', response.statusText);
       }
@@ -153,6 +181,23 @@ function AddProduct() {
               {subcategories.map((subcategory) => (
                 <option key={subcategory._id} value={subcategory._id}>
                   {subcategory.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        {nestedSubcategories.length > 0 && (
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-2">Nested Subcategory:</label>
+            <select
+              value={selectedNestedSubcategory}
+              onChange={handleNestedSubcategoryChange}
+              className="w-full px-3 py-2 border rounded-lg"
+            >
+              <option value="">Select a nested subcategory</option>
+              {nestedSubcategories.map((nestedSubcategory) => (
+                <option key={nestedSubcategory._id} value={nestedSubcategory._id}>
+                  {nestedSubcategory.name}
                 </option>
               ))}
             </select>

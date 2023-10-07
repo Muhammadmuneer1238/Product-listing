@@ -16,4 +16,16 @@ export const categoryController = async (req, res) => {
     console.error('Error creating category:', error);
     res.status(500).json({ error: 'Failed to create category' });
   }
+}
+export const fetchCategory=async(req,res)=>{
+  try{
+    await Category.find({}).then(()=>{
+      
+    })
+
+
+  }catch{
+
+  }
+
 };

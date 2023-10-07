@@ -1,7 +1,8 @@
 import express from "express"
-import { categoryController } from "../controller/catController.js";
+import { categoryController,fetchCategory } from "../controller/catController.js";
 const router = express.Router();
 
 router.post('/category', categoryController)
+router.get('/cat',fetchCategory)
 
 export default router;

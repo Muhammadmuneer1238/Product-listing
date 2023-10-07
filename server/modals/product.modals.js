@@ -1,20 +1,30 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
   },
   description: String,
   price: {
     type: Number,
-    required: true,
   },
-  // Reference to the Category or Subcategory to which the product belongs
+  // Reference to the Category to which the product belongs
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
-    required: true,
   },
+  // Reference to the Subcategory to which the product belongs (if applicable)
+  subcategory: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category', // Subcategories are also stored as Category objects
+  },
+  // Nested subcategories can be added here as an array
+  nestedSubcategories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category', // Subcategories are also stored as Category objects
+    },
+  ],
 });
 
 const Product = mongoose.model('Product', productSchema);
