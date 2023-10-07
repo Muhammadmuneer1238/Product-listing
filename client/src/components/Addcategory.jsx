@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-let apiUrl="http://localhost:3000"
+let apiUrl="https://product-listing-h25u.onrender.com"
 function AddCategory() {
   const [categoryName, setCategoryName] = useState('');
   const [subcategories, setSubcategories] = useState([]);
