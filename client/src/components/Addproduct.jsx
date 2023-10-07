@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import{Link } from 'react-router-dom'
 
-const apiUrl = 'https://product-listing-h25u.onrender.com/server/product';
+const apiUrl = 'https://backend-g9fq.onrender.com/server/product';
 
 function AddProduct() {
   const [productName, setProductName] = useState('');

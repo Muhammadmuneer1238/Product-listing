@@ -10,7 +10,7 @@ const ProductCategoryPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let apiUrl = 'https://product-listing-h25u.onrender.com/server/product';
+    let apiUrl = 'https://backend-g9fq.onrender.com/server/product';
 
     fetch(apiUrl + '/add')
       .then((response) => response.json())
@@ -30,7 +30,7 @@ const ProductCategoryPage = () => {
     if (selectedCategory && !loading) {
       // Construct the API URL with query parameters based on the selected categories
       let apiUrl =
-        'https://product-listing-h25u.onrender.com/server/product/products?category=' +
+        'https://backend-g9fq.onrender.com/server/product/products?category=' +
         selectedCategory._id;
 
       // If a subcategory is selected, add it to the query
