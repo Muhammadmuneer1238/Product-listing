@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import{Link} from 'react-router-dom';
 
 const ProductCategoryPage = () => {
   const [categories, setCategories] = useState([]);
@@ -148,7 +149,7 @@ const ProductCategoryPage = () => {
                   key={product._id}
                   className="mb-2 p-2 border rounded-lg bg-white shadow-md"
                 >
-                  {product.name} - {product.description} - ${product.price}
+                  {product.name}
                 </li>
               ))}
             </ul>
@@ -157,6 +158,16 @@ const ProductCategoryPage = () => {
           )}
         </div>
       )}
+      <Link to="/addproduct">
+        <button className="m-3 bg-green-600 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          Add Product
+        </button>
+      </Link>
+      <Link to="/addcategory">
+        <button className="m-3 bg-green-600 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          Add category
+        </button>
+      </Link>
     </div>
   );
 };

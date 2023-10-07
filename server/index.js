@@ -16,7 +16,6 @@ mongoose.connect(process.env.MONGO).then(() => {
 const app = express();
 app.use(bodyParser.json());
 
-// Enable CORS for specific origins
 const corsOptions = {
   origin: 'http://localhost:5173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

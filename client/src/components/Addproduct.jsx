@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import{Link } from 'react-router-dom'
 
 const apiUrl = 'http://localhost:3000/server/product';
 
@@ -212,6 +213,16 @@ function AddProduct() {
           </button>
         </div>
       </form>
+      <Link to="/addcategory">
+        <button className="m-3 bg-green-600 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          Add category
+        </button>
+      </Link>
+      <Link to="/">
+        <button className="m-3 bg-green-600 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          Product view
+        </button>
+      </Link>
     </div>
   );
 }

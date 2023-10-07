@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
-const apiUrl = 'http://localhost:3000/server/category';
-
+import { Link } from 'react-router-dom';
+let apiUrl="http://localhost:3000"
 function AddCategory() {
   const [categoryName, setCategoryName] = useState('');
   const [subcategories, setSubcategories] = useState([]);
@@ -172,6 +171,16 @@ function AddCategory() {
           </button>
         </div>
       </form>
+      <Link to="/addproduct">
+        <button className="m-3 bg-green-600 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          Add Product
+        </button>
+      </Link>
+      <Link to="/">
+        <button className="m-3 bg-green-600 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          Product view
+        </button>
+      </Link>
     </div>
   );
 }
