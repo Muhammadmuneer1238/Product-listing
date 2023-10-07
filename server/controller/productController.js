@@ -51,7 +51,7 @@ export const productList = async(req, res) => {
     }
 
     if (nestedSubcategory) {
-      filter.nestedSubcategories = nestedSubcategory;
+      filter.nestedSubcategory = nestedSubcategory;
     }
 
     const products = await Product.find(filter);

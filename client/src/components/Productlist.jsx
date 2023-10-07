@@ -141,16 +141,20 @@ const ProductCategoryPage = () => {
           <h2 className="text-2xl font-semibold mb-2">
             Products in {selectedNestedSubcategory.name}
           </h2>
-          <ul>
-            {products.map((product) => (
-              <li
-                key={product._id}
-                className="mb-2 p-2 border rounded-lg bg-white shadow-md"
-              >
-                {product.name} - {product.description} - ${product.price}
-              </li>
-            ))}
-          </ul>
+          {Array.isArray(products) && products.length > 0 ? (
+            <ul>
+              {products.map((product) => (
+                <li
+                  key={product._id}
+                  className="mb-2 p-2 border rounded-lg bg-white shadow-md"
+                >
+                  {product.name} - {product.description} - ${product.price}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No products available for this category.</p>
+          )}
         </div>
       )}
     </div>
